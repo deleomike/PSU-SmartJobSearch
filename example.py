@@ -16,11 +16,10 @@ response = natural_language_understanding.analyze(
 			emotion=True,
 			sentiment=True,
 			limit=2),
-		keywords=KeywordsOptions(
-			emotion=True,
-			sentiment=True,
-			limit=2)
-	)
+	keywords=KeywordsOptions(
+		emotion=True,
+		sentiment=True,
+		limit=2))
 ).get_result()
 
 print(json.dumps(response, indent=2))
