@@ -29,10 +29,39 @@ class CoverLetter_Parser():
 			pageObj = pdfReader.getPage(0)
 			text = pageObj.extractText()
 			file.close()
-		print(text)
 
+		else:
+			print('Invalid File Extension.')
+			text = ''
+
+		return text
 
 if __name__ == '__main__':
 	# tests resume parser class
 	resume = CoverLetter_Parser('data/ex2.docx')
-	resume.parse()
+	text = resume.parse()
+	# print(text)
+
+	nlu = NLU(
+		iam_apikey='BU11gy3frJMRMKz4XQ_sPJ_HGF3p-qEr74xUlEVTWvsY',
+		version='2018-03-19'
+	)
+
+	response = json.dumps(
+		nlu.analyze(
+			text=text,
+			features=Features(
+				entities=EntitiesOptions(
+					# emotion=True,
+					# sentiment=True,
+					limit=5),
+				# keywords=KeywordsOptions(
+				# 	emotion=True,
+				# 	sentiment=True,
+				# 	limit=2),
+			)
+		).get_result(), indent=2)
+
+	# prints the text analysis from Watson nlu
+	print(response)
+
