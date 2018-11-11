@@ -1,7 +1,7 @@
 from watson_developer_cloud import NaturalLanguageUnderstandingV1 as NLU
 from watson_developer_cloud.natural_language_understanding_v1 import Features, EntitiesOptions, KeywordsOptions
 import json
-from Resume_Parser import *
+from CoverLetter_Parser import *
 
 nlu = NLU(
 	iam_apikey='BU11gy3frJMRMKz4XQ_sPJ_HGF3p-qEr74xUlEVTWvsY',
