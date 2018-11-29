@@ -37,9 +37,9 @@ class CoverLetterParser():
 		return text
 
 
-if __name__ == '__main__':
+def get_letter(filename):
 	# tests resume parser class
-	resume = CoverLetterParser('data/ex2.docx')
+	resume = CoverLetterParser(filename)
 	text = resume.parse()
 
 	nlu = NLU(
@@ -51,9 +51,14 @@ if __name__ == '__main__':
 		text=text,
 		features=Features(
 			entities=EntitiesOptions(),
-			keywords=KeywordsOptions()
+			keywords=KeywordsOptions(),
 		)
 	).get_result()
 
 	# prints the text analysis from Watson nlu
-	jsonprinter(response)
+	# jsonprinter(response)
+	return response
+
+
+if __name__ == '__main__':
+	get_letter('data/brad.pdf')
