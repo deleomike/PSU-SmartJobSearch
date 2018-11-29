@@ -7,10 +7,10 @@ use 'from functions import *' to use
 
 # prints the text analysis from Watson nlu
 def jsonprinter(response):
-    print('keywords')
+    print('\nJOB:\n keywords')
     for k in response['keywords']:
         print('  ', k['text'])
 
-    print('\nentities')
+    print(' entities')
     for e in response['entities']:
         print('  ', e['text'])

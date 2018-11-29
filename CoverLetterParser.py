@@ -1,11 +1,11 @@
-from functions import *
+from Functions import *
 from watson_developer_cloud import NaturalLanguageUnderstandingV1 as NLU
 from watson_developer_cloud.natural_language_understanding_v1 import Features, EntitiesOptions, KeywordsOptions
 import PyPDF2
 import docx
 
 
-class CoverLetter_Parser():
+class CoverLetterParser():
 	def __init__(self, filename):
 		self.filename = filename
 		self.extention = filename.split(".")[-1]
@@ -39,7 +39,7 @@ class CoverLetter_Parser():
 
 if __name__ == '__main__':
 	# tests resume parser class
-	resume = CoverLetter_Parser('data/ex2.docx')
+	resume = CoverLetterParser('data/ex2.docx')
 	text = resume.parse()
 
 	nlu = NLU(
@@ -51,10 +51,9 @@ if __name__ == '__main__':
 		text=text,
 		features=Features(
 			entities=EntitiesOptions(),
-			keywords=KeywordsOptions(),
+			keywords=KeywordsOptions()
 		)
 	).get_result()
 
 	# prints the text analysis from Watson nlu
 	jsonprinter(response)
-

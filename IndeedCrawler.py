@@ -2,8 +2,7 @@ import urllib.request
 from bs4 import BeautifulSoup
 from watson_developer_cloud import NaturalLanguageUnderstandingV1 as NLU
 from watson_developer_cloud.natural_language_understanding_v1 import Features, EntitiesOptions, KeywordsOptions
-from functions import *
-import json
+from Functions import *
 
 
 jobs = []
@@ -25,14 +24,8 @@ for job in soup.find_all('div'):
 		response = nlu.analyze(
 			url=url,
 			features=Features(
-				entities=EntitiesOptions(
-					# emotion=True,
-					# sentiment=True,
-					limit=5),
-				keywords=KeywordsOptions(
-					# emotion=True,
-					# sentiment=True,
-					limit=5)
+				entities=EntitiesOptions(),
+				keywords=KeywordsOptions()
 			)
 		).get_result()
 		jobs.append(response)
