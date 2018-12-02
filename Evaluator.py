@@ -1,5 +1,5 @@
 """
-
+basically the main function until this is moved into gui
 """
 
 from Functions import *
