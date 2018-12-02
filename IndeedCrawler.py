@@ -38,9 +38,6 @@ def posting_generator():
 	while True:
 		soup = BeautifulSoup(next_page, 'html.parser')
 
-		#next_page = nextPage(soup)
-
-
 		for job in soup.find_all('div'):
 			if job.get('data-tn-component') is not None and job.get('data-tn-component') == 'organicJob':
 				url = 'https://www.indeed.com' + job.a['href']
@@ -57,7 +54,7 @@ def posting_generator():
 				).get_result()
 				jobs.append(response)
 				# jsonprinter(response)
-				yield response
+				yield url, response
 
 		next_url = nextPage(soup)
 
@@ -65,7 +62,6 @@ def posting_generator():
 			break
 		else:
 			next_page = urllib.request.urlopen(next_url, None, None)
-
 
 	print("END OF PROGRAM!")
 		

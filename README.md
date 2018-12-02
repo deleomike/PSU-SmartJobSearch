@@ -1,5 +1,12 @@
 # PSU-ResumeEvaluator
 
+FEATURES
+1. Job Search Tool. Extracts keywords from a resume and job posting descriptions and finds the best matches.
+2. Context Discovery Tool. Extracts keywords from a resume and finds the context these terms are used in for a set of job postings. 
+3. Industry Research Tool. Finds the most common keywords in job postings found using given search terms.
+
+
+INSTRUCTIONS
 0. web crawler continuously feeds watson discovery for the collection
 1. user provides search terms + cover letter / resume
 2. watson discovery uses collection and search terms to return top 5 job postings

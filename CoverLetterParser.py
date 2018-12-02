@@ -19,7 +19,7 @@ class CoverLetterParser():
 			text = '\n'.join(fullText)
 
 		elif self.extention == 'txt':
-			file = open(self.filename, 'rb')
+			file = open(self.filename, 'r')
 			text = file.read()
 			file.close()
 
@@ -50,8 +50,12 @@ def get_letter(filename):
 	response = nlu.analyze(
 		text=text,
 		features=Features(
-			entities=EntitiesOptions(),
-			keywords=KeywordsOptions(),
+			entities=EntitiesOptions(
+				limit=1000
+			),
+			keywords=KeywordsOptions(
+				limit=1000
+			),
 		)
 	).get_result()
 
