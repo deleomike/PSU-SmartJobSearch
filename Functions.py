@@ -3,7 +3,6 @@
 use 'from functions import *' to use
 
 """
-import itertools
 
 
 # prints the text analysis from Watson nlu

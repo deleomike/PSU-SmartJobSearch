@@ -3,7 +3,6 @@ import watson_developer_cloud
 from bs4 import BeautifulSoup
 from watson_developer_cloud import NaturalLanguageUnderstandingV1 as NLU
 from watson_developer_cloud.natural_language_understanding_v1 import Features, EntitiesOptions, KeywordsOptions
-from Functions import *
 from urllib.parse import urljoin
 
 

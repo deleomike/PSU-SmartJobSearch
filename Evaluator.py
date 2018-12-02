@@ -24,7 +24,7 @@ for url, posting in posting_generator():
 	keywords_matched += response
 
 	i += 1
-	if i == 30:
+	if i == 3:
 		break
 
 # sorts job urls and evaluations together by the length of the keyword union set :)
@@ -38,7 +38,6 @@ for word in keywords_matched:
 		common_matched[word] += 1
 	else:
 		common_matched[word] = 1
-
 common_matched = sorted(common_matched, key=common_matched.get, reverse=True)
 print('common matched keywords', common_matched)
 
@@ -49,6 +48,5 @@ for word in keywords:
 		common_all[word] += 1
 	else:
 		common_all[word] = 1
-
 common_all = sorted(common_all, key=common_all.get, reverse=True)
 print('common keywords', common_all)
