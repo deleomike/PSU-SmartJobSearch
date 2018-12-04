@@ -1,5 +1,5 @@
 """
-
+bns5273
 use 'from functions import *' to use
 
 """
@@ -22,12 +22,12 @@ def jsonprinter(response):
 # TODO: filter out locations, software engineer
 def get_evaluation(posting, letter):
 	posting_keywords = [k['text'] for k in posting['keywords']]
-	posting_entities = [k['text'] for k in posting['entities']]
+	# posting_entities = [k['text'] for k in posting['entities']]
 	letter_keywords = [e['text'] for e in letter['keywords']]
-	letter_entities = [e['text'] for e in letter['entities']]
+	# letter_entities = [e['text'] for e in letter['entities']]
 
 	keywords_union = set(posting_keywords) & set(letter_keywords)
-	entities_union = set(posting_entities) & set(letter_entities)
+	# entities_union = set(posting_entities) & set(letter_entities)
 	print(len(keywords_union), '/', len(posting_keywords), '+', len(letter_keywords), '\t', keywords_union)
 	# print(len(entities_union) / len(letter_entities), '\t', len(entities_union), '/', len(posting_entities) + len(letter_entities), entities_union)
 	# print()
