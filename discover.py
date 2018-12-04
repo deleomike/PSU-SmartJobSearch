@@ -25,20 +25,22 @@ environmentID = environments.result['environments'][1]['environment_id']
 #        description='{collection_desc}').get_result()
 
 
-data = ['1.htm','2.htm','3.htm','4.htm', '5.htm', '6.htm', '7.htm', '8.htm'] #list of names of documents
+#data = ['1.htm','2.htm','3.htm','4.htm', '5.htm', '6.htm', '7.htm', '8.htm'] #list of names of documents
 #assumes /data is the folder containing all data files
 #adds each one to the watson dictionary collection
-for file in data:
-    with open((os.path.join(os.getcwd(), 'data', file))) as fileinfo: 
-                add_doc = discovery.add_document(environmentID, collectionID, file_info=fileinfo)
-                print(json.dumps(add_doc, indent=2))
+#for file in data:
+ #   with open((os.path.join(os.getcwd(), 'data', file))) as fileinfo: 
+  #              add_doc = discovery.add_document(environmentID, collectionID, file=fileinfo,   file_content_type = 'text/html')
+                #print(json.dumps(add_doc, indent=2))
     
        
 keywords = ['PLC'] #list of features extracted from resume by watson NLU       
 results = {} #dictionary containing the query response each resume keyword returns
 for keyword in keywords:
-    response = discovery.query(keyword, filter=keyword, passages_characters=50, count=5)
-    results[keyword] = response.passages #response = list[QueryPassages]
-    #QueryPassages:
-    #passage_text = actual response text
-    #document_id = unique file identifier from the watson
+    response = discovery.query(environmentID,collectionID,filter=keyword,query=keyword,count=5,passages=True)
+    results[keyword] = response #response = list[QueryPassages]
+
+for entity in results['PLC'].result['passages']:
+    
+    print('\n''\"...' + str(entity['passage_text']) + '...\"''\n')
+    
