@@ -63,6 +63,6 @@ class Evaluator:
 
 
 if __name__ == '__main__':
-	evaluator = Evaluator('data/brett.txt', 10)
-	common = evaluator.getCommonMatchedKeywords()
+	evaluator = Evaluator('data/ex1.txt', 10)
+	matched = evaluator.getCommonMatchedKeywords()
 	all = evaluator.getCommonAllKeywords()
