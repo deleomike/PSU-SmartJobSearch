@@ -18,7 +18,9 @@ class Evaluator:
 		urls = []
 		keywords_union = []
 		i = 0
-		for url, posting in posting_generator():
+		jobTitle = "software developer"
+		jobLocation = "Pittsburgh, PA"
+		for url, posting in posting_generator(jobTitle, jobLocation):
 			response = get_evaluation(posting, letter)  # in-common keywords
 
 			urls.append(url)
