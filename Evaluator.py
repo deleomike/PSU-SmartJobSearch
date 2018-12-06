@@ -4,7 +4,7 @@ from ResumeParser import get_letter
 
 
 class Evaluator:
-    def __init__(self, filename, limit, job, loc): 
+    def __init__(self, filename, limit, jobTitle, jobLocation):
         letter = get_letter(filename)
         
         self.resume_words = []
@@ -16,8 +16,6 @@ class Evaluator:
         urls = []
         keywords_union = []
         i = 0
-        jobTitle = job
-        jobLocation = loc
         for url, posting in posting_generator(jobTitle, jobLocation):
             response = get_evaluation(posting, letter)  # in-common keywords
             urls.append(url)

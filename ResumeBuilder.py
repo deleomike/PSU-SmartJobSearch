@@ -64,7 +64,7 @@ def InitDiscovery():
 
 
 
-def GetPostings():
+def GetPostings(count):
     global JobTitle
     global JobLocation
     global environmentID
@@ -82,7 +82,7 @@ def GetPostings():
                                                          collectionID, 
                                                          file=fileinfo,   
                                                          file_content_type = 'text/html')   
-    evaluator = Evaluator(Resume, 10, JobTitle, JobLocation)
+    evaluator = Evaluator(Resume, count, JobTitle, JobLocation)
     #updates the resume keyword list
     keywords.clear()
     for word in evaluator.resume_words: #makes each one accessable to the user via dropdown
@@ -137,9 +137,11 @@ def InitGUI():
     #shutil.rmtree('Jobs')
     #os.mkdir("Jobs")
     global keywords
-    
-    shutil.rmtree("Jobs") #clears out any old web search files
-    
+    try:
+        shutil.rmtree("Jobs") #clears out any old web search files
+    except:
+        pass
+
     InitDiscovery()
     
     # Make the root window
@@ -151,20 +153,30 @@ def InitGUI():
     popupMenu = OptionMenu(root, keyword, *keywords)
     Label(root, text="Choose a keyword").grid(row = 0, column = 2)
     popupMenu.grid(row = 1, column =2)
-    
+
+
     #creates two text entry bars to enter job location and title
     job = StringVar()
     jobfield = Entry(root, textvariable=job)
     jobfield.grid(row=0, column=0)
+    job.set("{Enter Job Title}")
+
     loc = StringVar()
     locfield = Entry(root, textvariable=loc)
-    locfield.grid(row=1, column=0) 
-    
+    locfield.grid(row=1, column=0)
+    loc.set("{Enter Location}")
+
+    count = IntVar()
+    countfield = Entry(root, textvariable=count)
+    countfield.grid(row=2, column=1)
+    Label(root, text="# of search results").grid(row=1, column=1)
+    # label
+
     #defines the search function for GO
     def go():
             JobTitle = job.get() #first it retrieves text for job search
             JobLocation = loc.get()
-            GetPostings() #then it calls the actual webcrawler + watson NLU
+            GetPostings(count.get()) #then it calls the actual webcrawler + watson NLU
             menu = popupMenu["menu"]
             menu.delete(0, "end")   #updates the dropdown menu info
             for string in keywords:
@@ -179,7 +191,7 @@ def InitGUI():
     
     #Sets up button that initializes the search
     getpostings = Button(root, text='GO!', command = lambda : go())
-    getpostings.grid(row=1, column=1)
+    getpostings.grid(row=0, column=1)
     getpostings.event_add
     
     getresume = Button(root, text='Get Resume File', command = lambda : GetResume())
@@ -187,8 +199,7 @@ def InitGUI():
     
     getpassages = Button(root, text='Get Passages', command = lambda : QueryDiscovery(keyword.get()))
     getpassages.grid(row=2, column=2)
-    
-  
+
     
     #create scrollbar
     scrollbar = Scrollbar(root, orient=VERTICAL)
