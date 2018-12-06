@@ -40,13 +40,15 @@ def posting_generator(jobTitle, jobLocation):
 		filePath = Path("Jobs/IndeedJob{}.html".format(i))
 		page = urllib.request.urlopen(jobURL)
 		page_content = page.read()
-		
+        
+        
 		if not os.path.isdir("Jobs"):
 			os.makedirs("Jobs")
 		
 		with open(filePath, "wb") as fid:
 			fid.write(page_content)
 		i += 1
+
 
 	while True:
 		soup = BeautifulSoup(next_page, 'html.parser')
@@ -68,9 +70,7 @@ def posting_generator(jobTitle, jobLocation):
 				jobs.append(response)
 				# jsonprinter(response)
 				yield url, response
-				
-		
-		saveHTML(url)
+				saveHTML(url)
 		next_url = nextPage(soup)
 
 		if next_url == 0:
@@ -80,9 +80,3 @@ def posting_generator(jobTitle, jobLocation):
 
 	print("END OF PROGRAM!")
 		
-def main():
-	posting_generator()		
-
-if __name__ == '__main__':
-	main()
-	
