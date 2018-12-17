@@ -1,6 +1,6 @@
 from Functions import *
-from IndeedCrawler import posting_generator
 from ResumeParser import get_letter
+from webcrawling.IndeedCrawler import posting_generator
 
 
 class Evaluator:
@@ -20,15 +20,15 @@ class Evaluator:
 			response = get_evaluation(posting, letter)  # in-common keywords
 			urls.append(url)
 			keywords_union.append(response)
-			self.keywords += [e['text'] for e in posting['keywords']]     # all keywords
+			self.keywords += [e['text'] for e in posting['keywords']]  # all keywords
 			self.keywords_matched += response
 			i += 1
 			if i == limit:
 				break
 
-			# sorts job urls and evaluations together by the length of the keyword union set :)
+		# sorts job urls and evaluations together by the length of the keyword union set :)
 		self.all_sorted = sorted(zip(urls, keywords_union), key=lambda ele: len(ele[1]), reverse=True)
-		print(self.all_sorted)
+
 	def getAllEvaluations(self):
 		return self.all_sorted
 
@@ -36,12 +36,11 @@ class Evaluator:
 		# most commonly matched keywords already in resume
 		common_matched = {}
 		for word in self.keywords_matched:
-			if  word in common_matched:
+			if word in common_matched:
 				common_matched[word] += 1
 			else:
 				common_matched[word] = 1
 		common_matched = sorted(common_matched, key=common_matched.get, reverse=True)
-		print('common matched keywords', common_matched)
 		return common_matched
 
 	def getCommonAllKeywords(self):
@@ -53,7 +52,12 @@ class Evaluator:
 			else:
 				common_all[word] = 1
 		common_all = sorted(common_all, key=common_all.get, reverse=True)
-		print('common keywords', common_all)
 		return common_all
 
 
+if __name__ == '__main__':
+	print('crawling...')
+	evaluator = Evaluator('data/ex1.txt', 5, 'Software Developer', 'Pittsburgh, PA')
+
+	print('\ncommon keywords:', evaluator.getCommonAllKeywords())
+	print('commonly matched keywords:', evaluator.getCommonMatchedKeywords())
