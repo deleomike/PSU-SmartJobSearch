@@ -15,7 +15,7 @@ TODO
 ai:
 1. nlu training to create our own dictionary with relevant terms. WATSON STUDIO
 2. keyword filtering
-3. compile job postings to watson discovery
+3. compile job postings to watson discovery  
 web crawler:
 1. implement for other job websites
 2. crawl in background
