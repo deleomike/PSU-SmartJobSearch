@@ -8,6 +8,11 @@ from bs4 import BeautifulSoup
 from watson_developer_cloud import NaturalLanguageUnderstandingV1 as NLU
 from watson_developer_cloud.natural_language_understanding_v1 import Features, EntitiesOptions, KeywordsOptions
 
+#TODO: Implement threading on the posting_generator
+#TODO: Comment everything
+#TODO: Implement pipe to send the pages
+
+
 ####################################
 #Author: Unknown
 #Author: Mike DeLeo
@@ -18,7 +23,7 @@ from watson_developer_cloud.natural_language_understanding_v1 import Features, E
 ####################################
 #Beautiful Soup Doc Notes
 #Find_all:
-#Find: 
+#Find:
 
 i = 1
 
